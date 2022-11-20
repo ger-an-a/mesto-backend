@@ -22,7 +22,7 @@ const notFound = () => {
 const { PORT = 3000 } = process.env;
 
 const corsOptions = {
-  origin: 'mesto-ger.nomoredomains.icu',
+  origin: 'http://mesto-ger.nomoredomains.icu',
   credentials: true,
   optionSuccessStatus: 200,
 };
