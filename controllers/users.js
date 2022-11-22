@@ -99,10 +99,9 @@ module.exports.login = (req, res, next) => {
   const { email, password } = req.body;
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const jwtSecret = NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key';
       const token = jwt.sign(
         { _id: user._id },
-        jwtSecret,
+        NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key',
         { expiresIn: '7d' },
       );
       res
@@ -122,6 +121,9 @@ module.exports.logout = (req, res) => {
 };
 
 module.exports.checkCookie = (req, res) => {
-  if (req.cookies.jwt) res.send({ data: true });
+  if (req.cookies.jwt) {
+    console.log(true);
+    res.send({ data: true });
+  }
   else res.send({ data: false });
 };
