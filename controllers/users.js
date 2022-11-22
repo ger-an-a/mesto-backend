@@ -121,9 +121,6 @@ module.exports.logout = (req, res) => {
 };
 
 module.exports.checkCookie = (req, res) => {
-  if (req.cookies.jwt) {
-    console.log(true);
-    res.send({ data: true });
-  }
+  if (req.cookies.jwt) res.send({ data: true });
   else res.send({ data: false });
 };
